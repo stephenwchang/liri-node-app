@@ -30,7 +30,7 @@ if (command === 'concert-this') {
       for (let i = 0; i < response.data.length; i++) {
         console.log(`Venue: ${response.data[i].venue.name}`);
         console.log(`Location: ${response.data[i].venue.city}, ${response.data[i].venue.country}`);
-        console.log(`Date: ${response.data[i].datetime}`);
+        console.log(`Date: ${moment(response.data[i].datetime).format('dddd, MMMM Do, YYYY, h:mm a')}`);
         console.log('------------------------------------');
       }
     }
