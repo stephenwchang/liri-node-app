@@ -1,4 +1,4 @@
-# liri-node-app
+# LIRI Node App
 
 screenshot showing functionality of app - all required commands are shown
 
