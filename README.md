@@ -1,3 +1,3 @@
 # liri-node-app
 
-![Alt text] (/assets/screenshots/functionality_screenshot.png)
+![Screenshot] (assets/screenshots/functionality_screenshot.png?raw=true "Screenshot")
