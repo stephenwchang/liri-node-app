@@ -19,11 +19,27 @@ for (let i = 3; i < nodeArgs.length; i++) {
   }
   else {
     userInput += nodeArgs[i];
-
   }
 }
 
-if (command === 'concert-this') {
+// initial function called that checks which user command function to run
+commandFunction(command, userInput);
+
+function commandFunction(command, userInput) {
+  if (command === 'concert-this') {
+    concertThis(userInput);
+  } else if (command === 'spotify-this-song') {
+    spotifyThisSong(userInput);
+  } else if (command === 'movie-this') {
+    movieThis(userInput);
+  } else if (command === 'do-what-it-says') {
+    doWhatItSays();
+  } else {
+    console.log('Command not recognized. Please try again');
+  }
+}
+
+function concertThis(userInput) {
   var queryUrl = `https://rest.bandsintown.com/artists/${userInput}/events?app_id=codingbootcamp`
   axios.get(queryUrl).then(
     function(response) {
@@ -35,7 +51,9 @@ if (command === 'concert-this') {
       }
     }
   );
-} else if (command === 'spotify-this-song') {
+}
+
+function spotifyThisSong(userInput) {
   if (userInput === '') {
     userInput = 'The Sign, Ace of Base';
   }
@@ -49,7 +67,9 @@ if (command === 'concert-this') {
   .catch(function(err) {
     console.log(err);
   });
-} else if (command === 'movie-this') {
+}
+
+function movieThis(userInput) {
   if (userInput === '') {
     userInput = 'Mr. Nobody';
   }
@@ -64,13 +84,14 @@ if (command === 'concert-this') {
       console.log(`Language(s): ${response.data.Language}`);
       console.log(`Plot: ${response.data.Plot}`);
       console.log(`Cast: ${response.data.Actors}`);
-
     }
   );
+}
 
-
-} else if (command === 'do-what-it-says') {
-
-} else {
-  console.log('Command not recognized. Please try again');
+function doWhatItSays() {
+  fs.readFile('random.txt', 'utf8', (err, data) => {
+    if (err) throw err;
+    let splitData = data.split(',');
+    commandFunction(splitData[0], splitData[1]);
+  })
 }
